@@ -173,7 +173,7 @@ func (k *Kronos) generateBand(ctx context.Context) {
 			continue
 		case ts = <-ticker.C:
 			if skp < 10 {
-				if skp == 0 {
+				if skp == 1 {
 					k.status = 2 // busy
 					fmt.Printf("Day %d, %d active streams, skp %d\n", day, cnt, skp)
 					dms = ts.UnixMilli() & B15_mask
@@ -184,6 +184,7 @@ func (k *Kronos) generateBand(ctx context.Context) {
 						Val:  k.ns,
 						Dms:  &dms,
 					}
+					cnt = k.bandCnt.Load()
 					for range cnt {
 						k.cellCh <- cell
 					}
@@ -193,10 +194,7 @@ func (k *Kronos) generateBand(ctx context.Context) {
 			}
 			if day < 60 {
 				day++
-				if day%10 == 0 {
-					fmt.Printf("Day %d, %d active streams\n", day, cnt)
-				}
-				// time marker
+				// time marker in ms
 				dms = ts.UnixMilli() & B15_mask
 				cell = &pb.Cell{
 					Cmd:  "calend",
@@ -204,6 +202,9 @@ func (k *Kronos) generateBand(ctx context.Context) {
 					Keys: []string{"*", time.Date(2025, 8, int(day), 0, 0, 0, 0, time.UTC).Format("2006-01-02")},
 					Val:  k.ns,
 					Dms:  &dms,
+				}
+				if day%10 == 0 {
+					fmt.Printf("Day %d, %s for %d active streams\n", day, cell.Keys[1], cnt)
 				}
 				cnt = k.bandCnt.Load()
 				for range cnt {
