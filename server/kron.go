@@ -74,7 +74,7 @@ func (k *Kronos) Band(req *pb.EmptyReq, stream grpc.ServerStreamingServer[pb.Cel
 		}
 	}
 	fmt.Printf("Total %d cells sent.\n", cnt)
-	return nil
+	return err
 }
 
 func main() {
@@ -96,11 +96,12 @@ func main() {
 
 	select {
 	case <-k.signCh:
+		cancel()
 		fmt.Println("Terminated!")
 	case <-ctx.Done():
 		fmt.Println("Context done.")
 	}
-	cancel()
+	// release resources
 	close(k.cellCh)
 	k.server.GracefulStop()
 
@@ -172,8 +173,10 @@ func (k *Kronos) generateBand(ctx context.Context) {
 			fmt.Println("Cell generator context done.")
 			continue
 		case ts = <-ticker.C:
-			if skp < 10 {
-				if skp == 1 {
+			if skp < 20 {
+				skp++
+				// wait clients to connect
+				if skp == 10 {
 					k.status = 2 // busy
 					fmt.Printf("Day %d, %d active streams, skp %d\n", day, cnt, skp)
 					dms = ts.UnixMilli() & B15_mask
@@ -189,7 +192,7 @@ func (k *Kronos) generateBand(ctx context.Context) {
 						k.cellCh <- cell
 					}
 				}
-				skp++ // skip 10 times
+				// 10 steps before generation
 				continue
 			}
 			if day < 60 {
