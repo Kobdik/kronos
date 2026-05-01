@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.0
 // - protoc             v6.33.4
-// source: kron.proto
+// source: proto/kron.proto
 
 package kronstub
 
@@ -167,5 +167,5 @@ var Kron_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "kron.proto",
+	Metadata: "proto/kron.proto",
 }

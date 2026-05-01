@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        v6.33.4
-// source: kron.proto
+// source: proto/kron.proto
 
 package kronstub
 
@@ -30,7 +30,7 @@ type EmptyReq struct {
 
 func (x *EmptyReq) Reset() {
 	*x = EmptyReq{}
-	mi := &file_kron_proto_msgTypes[0]
+	mi := &file_proto_kron_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42,7 +42,7 @@ func (x *EmptyReq) String() string {
 func (*EmptyReq) ProtoMessage() {}
 
 func (x *EmptyReq) ProtoReflect() protoreflect.Message {
-	mi := &file_kron_proto_msgTypes[0]
+	mi := &file_proto_kron_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -55,7 +55,7 @@ func (x *EmptyReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EmptyReq.ProtoReflect.Descriptor instead.
 func (*EmptyReq) Descriptor() ([]byte, []int) {
-	return file_kron_proto_rawDescGZIP(), []int{0}
+	return file_proto_kron_proto_rawDescGZIP(), []int{0}
 }
 
 // Cell for multi dimensional analysis
@@ -74,7 +74,7 @@ type Cell struct {
 
 func (x *Cell) Reset() {
 	*x = Cell{}
-	mi := &file_kron_proto_msgTypes[1]
+	mi := &file_proto_kron_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -86,7 +86,7 @@ func (x *Cell) String() string {
 func (*Cell) ProtoMessage() {}
 
 func (x *Cell) ProtoReflect() protoreflect.Message {
-	mi := &file_kron_proto_msgTypes[1]
+	mi := &file_proto_kron_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -99,7 +99,7 @@ func (x *Cell) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Cell.ProtoReflect.Descriptor instead.
 func (*Cell) Descriptor() ([]byte, []int) {
-	return file_kron_proto_rawDescGZIP(), []int{1}
+	return file_proto_kron_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Cell) GetKeys() []string {
@@ -151,12 +151,11 @@ func (x *Cell) GetDms() int64 {
 	return 0
 }
 
-var File_kron_proto protoreflect.FileDescriptor
+var File_proto_kron_proto protoreflect.FileDescriptor
 
-const file_kron_proto_rawDesc = "" +
+const file_proto_kron_proto_rawDesc = "" +
 	"\n" +
-	"\n" +
-	"kron.proto\x12\bkronstub\"\n" +
+	"\x10proto/kron.proto\x12\bkronstub\"\n" +
 	"\n" +
 	"\bEmptyReq\"\xaa\x01\n" +
 	"\x04Cell\x12\x12\n" +
@@ -176,23 +175,23 @@ const file_kron_proto_rawDesc = "" +
 	".;kronstubb\x06proto3"
 
 var (
-	file_kron_proto_rawDescOnce sync.Once
-	file_kron_proto_rawDescData []byte
+	file_proto_kron_proto_rawDescOnce sync.Once
+	file_proto_kron_proto_rawDescData []byte
 )
 
-func file_kron_proto_rawDescGZIP() []byte {
-	file_kron_proto_rawDescOnce.Do(func() {
-		file_kron_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_kron_proto_rawDesc), len(file_kron_proto_rawDesc)))
+func file_proto_kron_proto_rawDescGZIP() []byte {
+	file_proto_kron_proto_rawDescOnce.Do(func() {
+		file_proto_kron_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_kron_proto_rawDesc), len(file_proto_kron_proto_rawDesc)))
 	})
-	return file_kron_proto_rawDescData
+	return file_proto_kron_proto_rawDescData
 }
 
-var file_kron_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_kron_proto_goTypes = []any{
+var file_proto_kron_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_proto_kron_proto_goTypes = []any{
 	(*EmptyReq)(nil), // 0: kronstub.EmptyReq
 	(*Cell)(nil),     // 1: kronstub.Cell
 }
-var file_kron_proto_depIdxs = []int32{
+var file_proto_kron_proto_depIdxs = []int32{
 	0, // 0: kronstub.Kron.Ready:input_type -> kronstub.EmptyReq
 	0, // 1: kronstub.Kron.Band:input_type -> kronstub.EmptyReq
 	1, // 2: kronstub.Kron.Ready:output_type -> kronstub.Cell
@@ -204,27 +203,27 @@ var file_kron_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_kron_proto_init() }
-func file_kron_proto_init() {
-	if File_kron_proto != nil {
+func init() { file_proto_kron_proto_init() }
+func file_proto_kron_proto_init() {
+	if File_proto_kron_proto != nil {
 		return
 	}
-	file_kron_proto_msgTypes[1].OneofWrappers = []any{}
+	file_proto_kron_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_kron_proto_rawDesc), len(file_kron_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_kron_proto_rawDesc), len(file_proto_kron_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_kron_proto_goTypes,
-		DependencyIndexes: file_kron_proto_depIdxs,
-		MessageInfos:      file_kron_proto_msgTypes,
+		GoTypes:           file_proto_kron_proto_goTypes,
+		DependencyIndexes: file_proto_kron_proto_depIdxs,
+		MessageInfos:      file_proto_kron_proto_msgTypes,
 	}.Build()
-	File_kron_proto = out.File
-	file_kron_proto_goTypes = nil
-	file_kron_proto_depIdxs = nil
+	File_proto_kron_proto = out.File
+	file_proto_kron_proto_goTypes = nil
+	file_proto_kron_proto_depIdxs = nil
 }

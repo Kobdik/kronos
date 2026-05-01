@@ -1,0 +1,28 @@
+go install google.golang.org/protobuf/cmd/protoc@latest
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+
+protoc --go_out=./server/kronstub --go-grpc_out=./server/kronstub proto/kron.proto 
+protoc --go_out=./client/kronstub --go-grpc_out=./client/kronstub proto/kron.proto 
+
+//
+goctl env check --install --verbose --force
+
+grpcurl -plaintext -d '{\"dur\": 10}' -proto proto/kron.proto localhost:8888 kronstub.Kron/Ready
+
+grpcurl -plaintext -proto proto/kron.proto localhost:7777 kronstub.Kron/Ready 
+{
+  "keys": [
+    "*",
+    "c2025"
+  ],
+  "val": 350,
+  "cmd": "calend",
+  "dms": "1769797969246"
+}
+
+grpcurl -proto proto/kron.proto localhost:7777 kronstub.Kron/Band
+
+grpcurl -proto proto/kron.proto localhost:7777 list kronstub.Kron 
+
+grpcurl -proto proto/kron.proto localhost:7777 describe kronstub.Kron.Ready
