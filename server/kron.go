@@ -12,7 +12,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	pb "github.com/Kobdik/kronos/kron/kronstub"
+	pb "github.com/Kobdik/kronos/kronstub"
 )
 
 const B15_mask int64 = 1<<15 - 1
